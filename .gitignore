@@ -3,4 +3,4 @@
 .vscode
 /flask_session
 .dockerignore
-__pycache__
+/__pycache__
