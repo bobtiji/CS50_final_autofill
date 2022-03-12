@@ -1,10 +1,6 @@
-import os
-
-from datetime import datetime
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_session import Session
-from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
 
@@ -38,6 +34,7 @@ def after_request(response):
     return response
 
 
+# Basic page either sends to index of to send if user has data already in DATA table
 @app.route("/")
 @login_required
 def index():
@@ -48,6 +45,7 @@ def index():
     return render_template("index.html")
 
 
+# User setting menu, to change password
 @app.route("/user", methods=["GET", "POST"])
 @login_required
 def user():
@@ -76,6 +74,7 @@ def user():
         return render_template("user.html")
 
 
+# Send page, result of DB query, displays DATA table content to display on the send page
 @app.route("/send",methods=["GET","POST"])
 @login_required
 def send():
@@ -103,10 +102,12 @@ def send():
     return render_template("send.html",table_val=table_val)
 
 
+# Takes in content from the forms of the make page and inputs it in the DB while creating a url from it. The entry list is there so that folks can customive the target data fields.
 @app.route("/make" ,methods=["GET","POST"])
 @login_required
 def make():
     if request.method == "POST":
+
         rank = request.form.get("rank")
         name = request.form.get("name")
         threeLast = request.form.get("threeLast")
@@ -117,7 +118,7 @@ def make():
         eightN = request.form.get("eightN")
         nineY = request.form.get("nineY")
         userID = session["user_id"]
-        table_val=[]
+        table_val = []
         entry1 = "entry.1315296153="
         entry2 = "&entry.1429378478="
         entry3 = "&entry.1527757341="
@@ -127,11 +128,12 @@ def make():
         entry7 = "&entry.507671141="
         entry8 = "&entry.1364729209="
         entry9 = "&entry.1837577196="
-
         payload = entry1+threeLast+entry2+rank+entry3+name+entry4+cie+entry5+bat+entry6+sixN+entry7+sevenN+entry8+eightN+entry9+nineY
-        url ="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeeA0rt7uimVYglH7WEjl4fiPV6WSUT4mRqVftB2NZMXly72Q/formResponse?"+payload
-        table_val=[rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
+        url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeeA0rt7uimVYglH7WEjl4fiPV6WSUT4mRqVftB2NZMXly72Q/formResponse?"+payload
+        table_val = [rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
+
         checkRows = db.execute("SELECT * FROM data WHERE userid = ?", session["user_id"])
+
         if len(checkRows) == 0:
             db.execute("INSERT INTO data (userid, rank, name, threeLast, cie, bat, sixN, sevenN, eightN, nineY, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",userID, rank, name, threeLast, cie, bat, sixN, sevenN, eightN, nineY, url)
         
@@ -141,9 +143,10 @@ def make():
     else:
         return render_template("make.html")
 
+
+# Basic login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
 
     # Forget any user_id
     session.clear()
@@ -169,14 +172,12 @@ def login():
         # Remember which user has logged in
         session["user_id"] = rows[0]["userid"]
         
-
-        table_val=[]
+        table_val = []
 
         rows1 = db.execute("SELECT * FROM data WHERE userid = ?", session["user_id"])
 
         if (len(rows1) == 0):
             return render_template("make.html")     
-        
 
         rank = rows1[0]["rank"]
         name = rows1[0]["name"]
@@ -188,9 +189,9 @@ def login():
         eightN = rows1[0]["eightN"]
         nineY = rows1[0]["nineY"]
         url = rows1[0]["url"]
-        table_val=[rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
+        table_val = [rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
 
-        # Redirect user to make page
+        # Redirect user to send page with data to be displayed
         return render_template("send.html",table_val=table_val)
 
     # User reached route via GET (as by clicking a link or via redirect)
@@ -200,7 +201,6 @@ def login():
 
 @app.route("/logout")
 def logout():
-    """Log user out"""
 
     # Forget any user_id
     session.clear()
@@ -209,9 +209,10 @@ def logout():
     return redirect("/login")
 
 
+# Basic register page
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+    
     session.clear()
 
     # User reached route via POST (as by submitting a form via POST)
