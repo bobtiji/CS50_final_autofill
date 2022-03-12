@@ -1,0 +1,28 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+.bob
+{
+    color: #000000;
+    font-size: 1.6rem;
+    background-color: #ffffff;
+}
+.bob1
+{
+    max-width: 700px;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+img {max-height:10%;}
+
+body{
+    background-image: url('pattern.jpg');
+    overflow-wrap: break-word;
+    
+}

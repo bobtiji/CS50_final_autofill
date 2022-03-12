@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block main %}
+    <form action="/make" method ="post" class="bob1 container-fluid">
+        <select name="rank" class="form-control">            
+            <option selected>Colonel</option>
+            <option>Lieutenant-Colonel</option>
+            <option>Major</option>
+            <option>Capitaine</option>
+            <option>Lieutenant</option>
+            <option>Second-Lieutenant</option>
+            <option>Adjudant-Chef</option>
+            <option>Adjudant-Maître</option>
+            <option>Adjudant</option>
+            <option>Sergent</option>
+            <option>Caporal Chef</option>
+            <option>Caporal</option>
+            <option>Sdt/Art</option>
+
+          </select>
+        <input autocomplete="off" name="name"  placeholder="Name" type="text" required>
+        <input autocomplete="off" name="threeLast" placeholder="Three last of SN" type="number" required maxlenght="3" min="3">
+        <select name="cie" class="form-control">            
+            <option selected>Cie A 2R22R</option>
+            <option>Cie B 2 R22R</option>
+            <option>Cie C 2R22R</option>
+            <option>Cie CAT 2R22R</option>
+            <option>Cie Svc 2R22R</option>
+            <option>Cie Grn 2R22R</option>
+          </select>
+        <select name="bat" class="form-control">
+            <option selected>313</option>
+            <option>Citadelle</option>
+            <option>LAV BARN</option>
+            <option>Maison</option>
+        </select>
+        <input autocomplete="off"  name="sixN" value="Non" type="text" required> 
+        <input autocomplete="off"  name="sevenN" value="Non" type="text" required>
+        <input autocomplete="off"  name="eightN" value="Non" type="text" required>
+        <input autocomplete="off"  name="nineY" value="Oui" type="text" required>
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary" value="MAKE IT!">
+    </form>
+{% endblock %}

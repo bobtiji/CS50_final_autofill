@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    User settings
+{% endblock %}
+
+{% block main %}
+    <form action="/user" method="post">
+        <h2>Change password</h2>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="cpw" name="cpw" placeholder="Current password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="npw" name="npw" placeholder="New password" type="password">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="conf" name="conf" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Change password</button>
+    </form>
+{% endblock %}
