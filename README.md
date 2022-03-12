@@ -15,8 +15,8 @@ Docker-compose looks something like this
 ```
 version: '3'
 services:
-  cs50-final:
-    image: bobtiji/cs50_final:latest
+  Final-Autofill:
+    image: bobtiji/cs50_final
     ports:
       - '8003:8003'
     restart: unless-stopped
