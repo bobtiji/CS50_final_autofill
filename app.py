@@ -10,7 +10,7 @@ from helpers import apology, login_required
 
 # create table to house users with unique userid
 # CREATE TABLE users(userid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username TEXT NOT NULL, hash TEXT NOT NULL);
-# CREATE TABLE data(userid INTEGER NOT NULL, rank TEXT NOT NULL, name TEXT NOT NULL, threeLast REAL NOT NULL, cie TEXT NOT NULL, bat TEXT NOT NULL, sixN TEXT NOT NULL, sevenN TEXT NOT NULL, eightN TEXT NOT NULL,ninY TEXT NOT NULL, url TEXT NOT NULL);
+# CREATE TABLE data(userid INTEGER NOT NULL, rank TEXT NOT NULL, name TEXT NOT NULL, threeLast REAL NOT NULL, cie TEXT NOT NULL, bat TEXT NOT NULL, sixN TEXT NOT NULL, sevenN TEXT NOT NULL, eightN TEXT NOT NULL,nineY TEXT NOT NULL, url TEXT NOT NULL);
 # CREATE UNIQUE INDEX useridx ON users (userid);
 
 # Configure application
@@ -118,8 +118,17 @@ def make():
         nineY = request.form.get("nineY")
         userID = session["user_id"]
         table_val=[]
-        entry1 = ""
-        payload = "entry.1315296153="+threeLast+"&entry.1429378478="+rank+"&entry.1527757341="+name+"&entry.2077813938=&entry.1170687127="+cie+"&entry.1910594951="+bat+"&entry.1958299218="+sixN+"&entry.507671141="+sevenN+"&entry.1364729209="+eightN+"&entry.1837577196="+nineY
+        entry1 = "entry.1315296153="
+        entry2 = "&entry.1429378478="
+        entry3 = "&entry.1527757341="
+        entry4 = "&entry.2077813938=&entry.1170687127="
+        entry5 = "&entry.1910594951="
+        entry6 = "&entry.1958299218="
+        entry7 = "&entry.507671141="
+        entry8 = "&entry.1364729209="
+        entry9 = "&entry.1837577196="
+
+        payload = entry1+threeLast+entry2+rank+entry3+name+entry4+cie+entry5+bat+entry6+sixN+entry7+sevenN+entry8+eightN+entry9+nineY
         url ="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeeA0rt7uimVYglH7WEjl4fiPV6WSUT4mRqVftB2NZMXly72Q/formResponse?"+payload
         table_val=[rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
         checkRows = db.execute("SELECT * FROM data WHERE userid = ?", session["user_id"])
