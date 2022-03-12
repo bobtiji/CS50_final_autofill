@@ -1,10 +1,7 @@
-/* Size for brand */
 nav .navbar-brand
 {
     font-size: xx-large;
 }
-
-/* Colors for brand */
 .bob
 {
     color: #000000;
@@ -20,9 +17,7 @@ nav .navbar-brand .red
     color: #ea433b;
 }
 img {max-height:10%;}
-
 body{
     background-image: url('pattern.jpg');
-    overflow-wrap: break-word;
-    
+    overflow-wrap: break-word;    
 }
