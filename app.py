@@ -118,6 +118,7 @@ def make():
         nineY = request.form.get("nineY")
         userID = session["user_id"]
         table_val=[]
+        entry1 = ""
         payload = "entry.1315296153="+threeLast+"&entry.1429378478="+rank+"&entry.1527757341="+name+"&entry.2077813938=&entry.1170687127="+cie+"&entry.1910594951="+bat+"&entry.1958299218="+sixN+"&entry.507671141="+sevenN+"&entry.1364729209="+eightN+"&entry.1837577196="+nineY
         url ="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeeA0rt7uimVYglH7WEjl4fiPV6WSUT4mRqVftB2NZMXly72Q/formResponse?"+payload
         table_val=[rank,name,threeLast,cie,bat,sixN,sevenN,eightN,nineY,url]
