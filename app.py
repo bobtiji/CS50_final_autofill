@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
 
 # create table to house users with unique userid
-# CREATE TABLE users(userid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username TEXT NOT NULL, hash TEXT NOT NULL;
+# CREATE TABLE users(userid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, username TEXT NOT NULL, hash TEXT NOT NULL);
 # CREATE TABLE data(userid INTEGER NOT NULL, rank TEXT NOT NULL, name TEXT NOT NULL, threeLast REAL NOT NULL, cie TEXT NOT NULL, bat TEXT NOT NULL, sixN TEXT NOT NULL, sevenN TEXT NOT NULL, eightN TEXT NOT NULL,ninY TEXT NOT NULL, url TEXT NOT NULL);
 # CREATE UNIQUE INDEX useridx ON users (userid);
 
